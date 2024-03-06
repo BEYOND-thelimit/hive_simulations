@@ -85,5 +85,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         joint_state_publisher_node,
         urdf_spawn_node,
+        robot_rviz,
         camera_rviz
     ])
