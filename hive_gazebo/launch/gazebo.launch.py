@@ -31,27 +31,17 @@ def generate_launch_description():
         name='joint_state_publisher'
     )
 
-    gazebo_server = IncludeLaunchDescription(
+    gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
-                FindPackageShare('gazebo_ros'),
+                FindPackageShare('hive_gazebo'),
                 'launch',
-                'gzserver.launch.py'
+                'gazebo_plugins.launch.py'
             ])
         ]),
         launch_arguments={
             'pause': 'true'
         }.items()
-    )
-
-    gazebo_client = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            PathJoinSubstitution([
-                FindPackageShare('gazebo_ros'),
-                'launch',
-                'gzclient.launch.py'
-            ])
-        ])
     )
 
     urdf_spawn_node = Node(
@@ -65,8 +55,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        gazebo_server,
-        gazebo_client,
+        gazebo,
         robot_state_publisher_node,
         joint_state_publisher_node,
         urdf_spawn_node,
