@@ -36,7 +36,7 @@ def generate_launch_description():
             PathJoinSubstitution([
                 FindPackageShare('hive_gazebo'),
                 'launch',
-                'gz.launch.py'
+                'gz_plugins.launch.py'
             ])
         ]),
         launch_arguments={
@@ -54,9 +54,36 @@ def generate_launch_description():
         output='screen'
     )
 
+    robot_rviz = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('hive_gazebo'),
+                'launch',
+                'robot_description.launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'pause': 'true'
+        }.items()
+    )
+
+    camera_rviz = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('hive_gazebo'),
+                'launch',
+                'camera_description.launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'pause': 'true'
+        }.items()
+    )
+
     return LaunchDescription([
         gazebo,
         robot_state_publisher_node,
         joint_state_publisher_node,
         urdf_spawn_node,
+        camera_rviz
     ])
