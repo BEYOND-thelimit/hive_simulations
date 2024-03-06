@@ -28,6 +28,7 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='table_robot_state_publisher',
+        namespace='table_robot',
         parameters=[
             {'robot_description': robot_urdf}
         ]
@@ -45,6 +46,10 @@ def generate_launch_description():
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher_gui',
+        namespace='table_robot',
+        parameters=[
+            {'robot_description': robot_urdf}
+        ]
     )
 
     rviz_node = Node(
