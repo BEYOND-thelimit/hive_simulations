@@ -26,7 +26,7 @@ from launch_utils import to_urdf
 def generate_launch_description():
     camera_model = 'test_d435i_camera.urdf.xacro'
 
-    rviz_config_dir = os.path.join(get_package_share_directory('hive_gazebo'), 'rviz', 'display.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory('hive_gazebo'), 'rviz', 'camera.rviz')
     xacro_path = os.path.join(get_package_share_directory('hive_gazebo'), 'urdf', camera_model)
     urdf = to_urdf(xacro_path, {'use_nominal_extrinsics': 'true', 'add_plug': 'true'})
     rviz_node = Node(
@@ -40,6 +40,7 @@ def generate_launch_description():
 
     camera_state_publisher = Node(
         name='camera_state_publisher',
+        namespace='intel_camera',
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',

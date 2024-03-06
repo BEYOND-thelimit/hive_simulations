@@ -15,7 +15,7 @@ def generate_launch_description():
     robot_description_config = xacro.process_file(xacro_file)
     robot_urdf = robot_description_config.toxml()
 
-    rviz_config_file = os.path.join(share_dir, 'rviz', 'display.rviz')
+    rviz_config_file = os.path.join(share_dir, 'rviz', 'robot.rviz')
 
     gui_arg = DeclareLaunchArgument(
         name='gui',
@@ -39,6 +39,7 @@ def generate_launch_description():
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
+        namespace='table_robot',
     )
 
     joint_state_publisher_gui_node = Node(
