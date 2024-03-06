@@ -36,7 +36,7 @@ def generate_launch_description():
             PathJoinSubstitution([
                 FindPackageShare('hive_gazebo'),
                 'launch',
-                'gazebo_plugins.launch.py'
+                'gz.launch.py'
             ])
         ]),
         launch_arguments={
