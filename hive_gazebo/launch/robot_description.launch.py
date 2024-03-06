@@ -27,7 +27,8 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher',
+        name='table_robot_state_publisher',
+        namespace='table_robot',
         parameters=[
             {'robot_description': robot_urdf}
         ]
@@ -37,14 +38,18 @@ def generate_launch_description():
         condition=UnlessCondition(show_gui),
         package='joint_state_publisher',
         executable='joint_state_publisher',
-        name='joint_state_publisher'
+        name='joint_state_publisher',
     )
 
     joint_state_publisher_gui_node = Node(
         condition=IfCondition(show_gui),
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui'
+        name='joint_state_publisher_gui',
+        namespace='table_robot',
+        parameters=[
+            {'robot_description': robot_urdf}
+        ]
     )
 
     rviz_node = Node(
