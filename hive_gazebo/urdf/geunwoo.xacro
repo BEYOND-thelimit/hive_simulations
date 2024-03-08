@@ -3,7 +3,7 @@
 
 <xacro:include filename="$(find hive_gazebo)/urdf/materials.xacro" />
 <xacro:include filename="$(find hive_gazebo)/urdf/geunwoo.trans" />
-<xacro:include filename="$(find hive_gazebo)/urdf/geunwoo.gazebo" />
+<xacro:include filename="$(find hive_gazebo)/urdf/geunwoo_gazebo.xacro" />
 <link name="base_link">
   <inertial>
     <origin xyz="-0.10589890450472451 0.004101721807053668 0.2428453449181509" rpy="0 0 0"/>

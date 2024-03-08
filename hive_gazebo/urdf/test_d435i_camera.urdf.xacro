@@ -3,9 +3,13 @@
   <xacro:arg name="use_nominal_extrinsics" default="false" />
   <xacro:include filename="$(find hive_gazebo)/urdf/_d435i.urdf.xacro"/>
 
-  <link name="ceiling_link" />
-  <xacro:sensor_d435i parent="ceiling_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
+   <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <link name="ceiling_link">
     <origin xyz="0 0 0" rpy="0 0 0"/>
+  </link>
+  <xacro:sensor_d435i parent="ceiling_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
+    <origin xyz="1 1 0" rpy="0 0 0"/>
   </xacro:sensor_d435i>
 </robot>
 
