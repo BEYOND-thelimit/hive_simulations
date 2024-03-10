@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <robot name="geunwoo" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find hive_gazebo)/urdf/materials.xacro" />
-<xacro:include filename="$(find hive_gazebo)/urdf/geunwoo.trans" />
-<xacro:include filename="$(find hive_gazebo)/urdf/geunwoo_gazebo.xacro" />
+<xacro:include filename="$(find hive_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find hive_description)/urdf/geunwoo.trans" />
+<xacro:include filename="$(find hive_description)/urdf/geunwoo_gazebo.xacro" />
 <link name="base_link">
   <inertial>
     <origin xyz="-0.10589890450472451 0.004101721807053668 0.2428453449181509" rpy="0 0 0"/>
@@ -14,14 +14,14 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -35,14 +35,14 @@
   <visual>
     <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -56,14 +56,14 @@
   <visual>
     <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -77,14 +77,14 @@
   <visual>
     <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -98,14 +98,14 @@
   <visual>
     <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_description)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
