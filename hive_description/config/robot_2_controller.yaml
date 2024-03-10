@@ -1,0 +1,33 @@
+robot_2:
+  controller_manager:
+    ros__parameters:
+      update_rate: 100  # Hz
+
+      diff_drive_controller:
+        type: velocity_controllers/DiffDriveController
+
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      ros__parameters:
+
+        left_wheel_names: robot2_left_wheel_joint
+        right_wheel_names: robot2_left_wheel_joint
+        linear:
+          x:
+            has_velocity_limits: true
+            max_velocity: 1.0  # 최대 선형 속도 (m/s)
+        angular:
+          z:
+            has_velocity_limits: true
+            max_velocity: 2.0  # 최대 각속도 (rad/s)
+        cmd_vel_timeout: 500ms  # cmd_vel 메시지가 없을 때 시간 초과
+        publish_rate: 50  # odom 데이터 발행 빈도 (Hz)
+
+    # 로봇의 odometry 정보를 제공하는 노드 설정
+    odometry_publisher:
+      ros__parameters:
+        type: nav_msgs/msg/Odometry
+        topic_name: 'odom'
+        publish_rate: 50  # 발행 빈도 (Hz)
