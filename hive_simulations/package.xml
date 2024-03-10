@@ -9,6 +9,7 @@
 
   <!--추가로 만든 ROS package들 이어서 기재-->
   <exec_depend>hive_gazebo</exec_depend>
+  <exec_depend>hive_description</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

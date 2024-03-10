@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<robot name="geunwoo"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="body_color" value="Gazebo/Silver" />
+  <xacro:macro name="robot_gazebo_systems" params="robot_name">
+
+    <gazebo>
+      <plugin filename="libgazebo_ros2_control.so" name="${robot_name}_gazebo_ros_control">
+        <ros>
+          <namespace>${robot_name}</namespace>
+        </ros>
+        <parameters>$(find hive_description)/config/${robot_name}_controller.yaml</parameters>
+        <robot_param_node>/${robot_name}_robot_state_publisher</robot_param_node>
+      </plugin>
+      <plugin name='ros_factory' filename='libgazebo_ros_factory.so'>
+        <ros>
+          <namespace>${robot_name}</namespace>
+        </ros>
+      </plugin>
+
+      <!--diff_drive-->
+      <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
+        <ros>
+          <!--cmd_vel and odom name remap-->
+          <remapping>cmd_vel:=cmd_vel1</remapping>
+          <remapping>odom:=odom1</remapping>
+        </ros>
+
+        <!-- Wheel Information -->
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>0.5336</wheel_separation>
+        <wheel_diameter>0.115</wheel_diameter>
+
+        <!-- Limits -->
+        <max_wheel_torque>200</max_wheel_torque>
+        <max_wheel_acceleration>10.0</max_wheel_acceleration>
+
+        <!-- Output -->
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+      </plugin>
+
+      <!-- joint -->
+      <plugin name="${robot_name}_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+        <ros>
+          <namespace>${robot_name}</namespace>
+        </ros>
+        <update_rate>20</update_rate>
+
+        <joint_name>${robot_name}_left_wheel_joint</joint_name>
+        <joint_name>${robot_name}_right_wheel_joint</joint_name>
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="base_link">
+      <material>${body_color}</material>
+      <!-- <mu1>0.2</mu1>
+      <mu2>0.2</mu2> -->
+      <self_collide>true</self_collide>
+      <gravity>true</gravity>
+    </gazebo>
+
+    <gazebo reference="left_wheel">
+      <material>${body_color}</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="right_wheel">
+      <material>${body_color}</material>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="right_caster">
+      <material>${body_color}</material>
+      <mu1>0.05</mu1>
+      <mu2>0.05</mu2>
+      <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="left_caster">
+      <material>${body_color}</material>
+      <mu1>0.05</mu1>
+      <mu2>0.05</mu2>
+      <self_collide>true</self_collide>
+    </gazebo>
+  </xacro:macro >
+</robot>

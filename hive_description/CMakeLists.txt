@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(hive_gazebo)
+project(hive_description)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -14,17 +14,22 @@ find_package(rclcpp REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(DIRECTORY
-  rviz
+  meshes
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(DIRECTORY
-  worlds
+  urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

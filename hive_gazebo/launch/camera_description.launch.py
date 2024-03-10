@@ -27,7 +27,7 @@ def generate_launch_description():
     camera_model = 'test_d435i_camera.urdf.xacro'
 
     rviz_config_dir = os.path.join(get_package_share_directory('hive_gazebo'), 'rviz', 'camera.rviz')
-    xacro_path = os.path.join(get_package_share_directory('hive_gazebo'), 'urdf', camera_model)
+    xacro_path = os.path.join(get_package_share_directory('hive_description'), 'urdf', camera_model)
     urdf = to_urdf(xacro_path, {'use_nominal_extrinsics': 'true', 'add_plug': 'true'})
     rviz_node = Node(
         package='rviz2',
