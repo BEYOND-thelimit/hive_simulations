@@ -11,9 +11,19 @@ robot_2:
 
     diff_drive_controller:
       ros__parameters:
+        remappings:
+          cmd_vel: robot2/cmd_vel
+          odom: robot2/odom
 
-        left_wheel_names: robot2_left_wheel_joint
-        right_wheel_names: robot2_left_wheel_joint
+        base_frame_id: robot2_base_link
+        odom_frame_id: robot2_odom
+
+        position_feedback: false
+        open_loop: true
+        enable_odom_tf: true
+
+        left_wheel_names: ["robot2_left_wheel_joint"]
+        right_wheel_names: ["robot2_right_wheel_joint"]
         linear:
           x:
             has_velocity_limits: true

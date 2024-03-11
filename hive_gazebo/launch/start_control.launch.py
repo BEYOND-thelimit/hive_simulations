@@ -11,6 +11,7 @@ def launch_setup(context, *args, **kwargs):
 
     robot_name = LaunchConfiguration('robot_name').perform(context)
     spawn_controller_1_name = robot_name + "_spawn_controller_joint_state_broadcaster"
+    spawn_controller_2_name = robot_name + "_spawn_controller_diff_drive_controller"
     controller_manager_name = "controller_manager"
 
     spawn_controller_1 = Node(
@@ -21,7 +22,17 @@ def launch_setup(context, *args, **kwargs):
         arguments=["joint_state_broadcaster", "--controller-manager", controller_manager_name],
         output="screen"
     )
-    return [spawn_controller_1]
+
+    spawn_controller_2 = Node(
+        package="controller_manager",
+        executable="spawner",
+        name=spawn_controller_2_name,
+        namespace=robot_name,
+        arguments=["diff_drive_controller", "--controller-manager", controller_manager_name],
+        output="screen"
+    )
+
+    return [spawn_controller_1, spawn_controller_2]
 
 
 def generate_launch_description(): 
