@@ -1,45 +1,45 @@
 <?xml version="1.0" ?>
-<robot name="geunwoo" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot name="robot1" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<transmission name="left_wheel_joint_tran">
+<transmission name="robot1_left_wheel_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="left_wheel_joint">
+  <joint name="robot1_left_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="left_wheel_joint_actr">
+  <actuator name="robot1_left_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="right_wheel_joint_tran">
+<transmission name="robot1_right_wheel_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="right_wheel_joint">
+  <joint name="robot1_right_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="right_wheel_joint_actr">
+  <actuator name="robot1_right_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="right_caster_joint_tran">
+<transmission name="robot1_right_caster_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="right_caster_joint">
+  <joint name="robot1_right_caster_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="right_caster_joint_actr">
+  <actuator name="robot1_right_caster_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="left_caster_joint_tran">
+<transmission name="robot1_left_caster_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="left_caster_joint5">
+  <joint name="robot1_left_caster_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="left_caster_joint_actr">
+  <actuator name="robot1_left_caster_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
