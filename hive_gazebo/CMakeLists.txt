@@ -26,6 +26,26 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
+  urdf/robot1
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  urdf/robot2
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  urdf/robot3
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  urdf/intel_realsense1
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
   rviz
   DESTINATION share/${PROJECT_NAME}
 )
