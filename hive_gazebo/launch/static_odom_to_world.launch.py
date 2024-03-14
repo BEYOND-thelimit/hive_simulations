@@ -25,7 +25,7 @@ def generate_launch_description():
         namespace='robot2',
         output='screen',
         emulate_tty=True,
-        arguments=['2', '0', '0', '0', '0', '0', 'world', 'robot2_odom']
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'robot2_odom']
     )
 
     st_pub3 = Node(
@@ -35,7 +35,7 @@ def generate_launch_description():
         namespace='robot3',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '2', '0', '0', '0', '0', 'world', 'robot3_odom']
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'robot3_odom']
     )
 
     return LaunchDescription([
