@@ -92,6 +92,20 @@ def generate_launch_description():
             'pause': 'true'
         }.items()
     )
+
+    odom_to_world_publisher = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('hive_gazebo'),
+                'launch',
+                'static_odom_to_world.launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'pause': 'true'
+        }.items()
+    )
+
     robot1_robot_state_publisher, \
     robot1_joint_state_publisher, \
     robot1_urdf_node, \
@@ -111,6 +125,8 @@ def generate_launch_description():
     return LaunchDescription([
         gui_arg,
         gazebo,
+        odom_to_world_publisher,
+
         robot1_robot_state_publisher,
         robot1_joint_state_publisher,
         robot1_urdf_node,
