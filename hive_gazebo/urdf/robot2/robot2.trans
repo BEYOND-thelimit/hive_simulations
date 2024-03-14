@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot name="robot2" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="robot2_left_wheel_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="robot2_left_wheel_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="robot2_left_wheel_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="robot2_right_wheel_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="robot2_right_wheel_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="robot2_right_wheel_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="robot2_right_caster_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="robot2_right_caster_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="robot2_right_caster_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="robot2_left_caster_joint_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="robot2_left_caster_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="robot2_left_caster_joint_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+</robot>

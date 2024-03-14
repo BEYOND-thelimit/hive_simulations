@@ -11,7 +11,7 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 
-def robot(share_dir,robot_name):
+def robot(share_dir,robot_name,x,y):
     xacro_file1 = os.path.join(share_dir, 'urdf', robot_name, robot_name+'.xacro')
     robot_description_config1 = xacro.process_file(xacro_file1)
     robot_urdf1 = robot_description_config1.toxml()
@@ -43,7 +43,7 @@ def robot(share_dir,robot_name):
         arguments=[
             '-entity', robot_name,
             '-topic', robot_name+'/robot_description',
-            '-x', '0','-y', '0','-z', '0'
+            '-x', x,'-y', y,'-z', '0'
         ],
         output='screen'
     )
@@ -92,9 +92,21 @@ def generate_launch_description():
             'pause': 'true'
         }.items()
     )
-    robot1_robot_state_publisher, robot1_joint_state_publisher, robot1_urdf_node, robot1_rviz_node= robot(share_dir=share_dir,robot_name='robot1')
-    #robot2_robot_state_publisher, robot2_joint_state_publisher, robot2_urdf_node, robot2_rviz_node= robot(share_dir=share_dir,robot_name='robot2')
-    #robot3_robot_state_publisher, robot3_joint_state_publisher, robot3_urdf_node, robot3_rviz_node= robot(share_dir=share_dir,robot_name='robot3')
+    robot1_robot_state_publisher, \
+    robot1_joint_state_publisher, \
+    robot1_urdf_node, \
+    robot1_rviz_node= robot(share_dir=share_dir,robot_name='robot1', x='0', y='0')
+
+    robot2_robot_state_publisher, \
+    robot2_joint_state_publisher, \
+    robot2_urdf_node, \
+    robot2_rviz_node= robot(share_dir=share_dir,robot_name='robot2', x='2', y='0')
+
+    robot3_robot_state_publisher, \
+    robot3_joint_state_publisher, \
+    robot3_urdf_node, \
+    robot3_rviz_node= robot(share_dir=share_dir,robot_name='robot3', x='0', y='2')
+
 
     return LaunchDescription([
         gui_arg,
@@ -104,13 +116,13 @@ def generate_launch_description():
         robot1_urdf_node,
         robot1_rviz_node,
 
-        # robot2_robot_state_publisher,
-        # robot2_joint_state_publisher,
-        # robot2_urdf_node,
-        # robot2_rviz_node,
+        robot2_robot_state_publisher,
+        robot2_joint_state_publisher,
+        robot2_urdf_node,
+        #robot2_rviz_node,
 
-        # robot3_robot_state_publisher,
-        # robot3_joint_state_publisher,
-        # robot3_urdf_node,
+        robot3_robot_state_publisher,
+        robot3_joint_state_publisher,
+        robot3_urdf_node,
         # robot3_rviz_node
     ])

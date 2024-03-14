@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<robot name="robot3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find hive_gazebo)/urdf/robot3/robot3_materials.xacro"/>
+<xacro:include filename="$(find hive_gazebo)/urdf/robot3/robot3.trans"/>
+<xacro:include filename="$(find hive_gazebo)/urdf/robot3/robot3.gazebo"/>
+<link name="robot3_base_link">
+  <inertial>
+    <origin xyz="-0.10589890450472451 0.004101721807053668 0.2428453449181509" rpy="0 0 0"/>
+    <!-- <mass value="97.68742911120015"/> -->
+    <mass value="40.0"/>
+    <inertia ixx="5.633563" iyy="4.887417" izz="5.433869" ixy="0.000389" iyz="-0.000239" ixz="0.200866"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="robot3_left_wheel">
+  <inertial>
+    <origin xyz="2.6594023369474935e-07 -0.006200652298741449 -4.894162568547244e-09" rpy="0 0 0"/>
+    <mass value="1.3260899817774452"/>
+    <inertia ixx="0.001415" iyy="0.002676" izz="0.001415" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="robot3_right_wheel">
+  <inertial>
+    <origin xyz="2.5883027950490597e-07 0.006201095560612602 -2.8975644106310483e-10" rpy="0 0 0"/>
+    <mass value="1.3260894987915728"/>
+    <inertia ixx="0.001415" iyy="0.002676" izz="0.001415" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="robot3_right_caster">
+  <inertial>
+    <origin xyz="-0.017519612985357313 2.0677910783639675e-07 -0.05240105157186727" rpy="0 0 0"/>
+    <mass value="1.6117875662608887"/>
+    <inertia ixx="0.001424" iyy="0.001841" izz="0.000923" ixy="-0.0" iyz="-0.0" ixz="-0.000298"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="robot3_left_caster">
+  <inertial>
+    <origin xyz="-0.017519612985357313 2.0677910747557426e-07 -0.05240105157186712" rpy="0 0 0"/>
+    <mass value="1.6117875662608847"/>
+    <inertia ixx="0.001424" iyy="0.001841" izz="0.000923" ixy="-0.0" iyz="-0.0" ixz="-0.000298"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="green"/>
+  </visual>
+  <collision>
+    <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="robot3_left_wheel_joint" type="continuous">
+  <origin xyz="-1e-06 0.277578 0.0" rpy="0 0 0"/>
+  <parent link="robot3_base_link"/>
+  <child link="robot3_left_wheel"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="robot3_right_wheel_joint" type="continuous">
+  <origin xyz="-1e-06 -0.269222 0.0" rpy="0 0 0"/>
+  <parent link="robot3_base_link"/>
+  <child link="robot3_right_wheel"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="robot3_right_caster_joint" type="fixed">
+  <origin xyz="-0.310001 -0.185822 0.043" rpy="0 0 0"/>
+  <parent link="robot3_base_link"/>
+  <child link="robot3_right_caster"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+
+<joint name="robot3_left_caster_joint" type="fixed">
+  <origin xyz="-0.310001 0.194178 0.043" rpy="0 0 0"/>
+  <parent link="robot3_base_link"/>
+  <child link="robot3_left_caster"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+
+</robot>
