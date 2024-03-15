@@ -14,14 +14,14 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -35,14 +35,14 @@
   <visual>
     <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="1e-06 -0.277578 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -56,14 +56,14 @@
   <visual>
     <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="1e-06 0.269222 0.0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -77,14 +77,14 @@
   <visual>
     <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/right_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.310001 0.185822 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/right_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/right_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -98,14 +98,14 @@
   <visual>
     <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/left_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.310001 -0.194178 -0.043" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="file://$(find hive_gazebo)/meshes/left_caster_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="file://$(find hive_gazebo)/meshes/robots/left_caster_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>

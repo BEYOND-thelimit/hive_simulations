@@ -56,7 +56,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /intel_camera/robot_description
+        Value: /robot_description
       Enabled: true
       Name: RobotModel
       TF Prefix: ""
