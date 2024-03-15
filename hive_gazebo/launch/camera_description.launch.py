@@ -43,8 +43,15 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[
-            {'robot_description': urdf}
-        ]
+        arguments=[urdf]
         )
-    return launch.LaunchDescription([rviz_node, camera_state_publisher])
+
+    cam_pub1 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '3.5', '0', '0', '0', 'world', 'ceiling_link']
+    )
+    return launch.LaunchDescription([rviz_node, camera_state_publisher,cam_pub1])

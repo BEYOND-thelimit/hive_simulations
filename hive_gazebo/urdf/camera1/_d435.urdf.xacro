@@ -21,7 +21,8 @@ This is the URDF model for the Intel RealSense 430 camera, in its
 aluminum peripherial evaluation case.
 -->
 
-<robot name="sensor_d435" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="sensor_d435"
+  xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Includes -->
   <xacro:include filename="$(find hive_gazebo)/urdf/camera1/_materials.urdf.xacro" />
   <xacro:include filename="$(find hive_gazebo)/urdf/camera1/_usb_plug.urdf.xacro" />
@@ -75,7 +76,7 @@ aluminum peripherial evaluation case.
           <!-- the mesh origin is at front plate in between the two infrared camera axes -->
           <origin xyz="${d435_zero_depth_to_glass + d435_glass_to_front} ${-d435_cam_depth_py} 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
           <geometry>
-            <mesh filename="file://$(find hive_gazebo)/meshes/d435.dae" />
+            <mesh filename="file://$(find hive_gazebo)/meshes/intel_realsense/d435.dae" />
           </geometry>
         </xacro:if>
         <xacro:unless value="${use_mesh}">
@@ -84,7 +85,7 @@ aluminum peripherial evaluation case.
             <box size="${d435_cam_depth} ${d435_cam_width} ${d435_cam_height}"/>
           </geometry>
           <material name="aluminum"/>
-        </xacro:unless>     
+        </xacro:unless>
       </visual>
       <collision>
         <origin xyz="0 ${-d435_cam_depth_py} 0" rpy="0 0 0"/>

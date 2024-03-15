@@ -79,19 +79,6 @@ def generate_launch_description():
         }.items()
     )
 
-    camera_rviz = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            PathJoinSubstitution([
-                FindPackageShare('hive_gazebo'),
-                'launch',
-                'camera_description.launch.py'
-            ])
-        ]),
-        launch_arguments={
-            'pause': 'true'
-        }.items()
-    )
-
     odom_to_world_publisher = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
