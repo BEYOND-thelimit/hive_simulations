@@ -46,6 +46,11 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
+  urdf/camera2
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
   rviz
   DESTINATION share/${PROJECT_NAME}
 )
