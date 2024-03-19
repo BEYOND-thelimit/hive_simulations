@@ -41,7 +41,12 @@ install(DIRECTORY
 )
 
 install(DIRECTORY
-  urdf/camera1
+  urdf/simple_cameras
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  urdf/intel_realsense
   DESTINATION share/${PROJECT_NAME}
 )
 

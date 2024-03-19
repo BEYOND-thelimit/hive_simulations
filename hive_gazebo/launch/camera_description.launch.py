@@ -42,6 +42,7 @@ def generate_launch_description():
         name='camera_state_publisher',
         package='robot_state_publisher',
         executable='robot_state_publisher',
+        namespace='camera1',
         output='screen',
         arguments=[urdf]
         )
