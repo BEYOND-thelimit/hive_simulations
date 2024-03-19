@@ -41,7 +41,7 @@ def robot(share_dir,robot_name,x,y):
         arguments=[
             '-entity', robot_name,
             '-topic', robot_name+'/robot_description',
-            '-x', x ,'-y', y,'-z', '0'
+            '-x', x ,'-y', y,'-z', '0.0575'
         ],
         output='screen'
     )
@@ -98,11 +98,11 @@ def generate_launch_description():
 
     robot2_robot_state_publisher, \
     robot2_joint_state_publisher, \
-    robot2_urdf_node = robot(share_dir=share_dir,robot_name='robot2',x='1',y='0')
+    robot2_urdf_node = robot(share_dir=share_dir,robot_name='robot2',x='0',y='1')
 
     robot3_robot_state_publisher, \
     robot3_joint_state_publisher, \
-    robot3_urdf_node = robot(share_dir=share_dir,robot_name='robot3',x='0',y='1')
+    robot3_urdf_node = robot(share_dir=share_dir,robot_name='robot3',x='0',y='2')
 
 
     return LaunchDescription([
