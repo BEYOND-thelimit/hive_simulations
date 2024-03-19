@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="camera1">
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+    </material>
+    <!-- world link-->
+    <link name="world"/>
+
+    <joint name="world_ceiling_joint" type="fixed">
+        <parent link="world"/>
+        <child link="ceiling_link"/>
+        <origin xyz="0 0 3.505" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ceiling link-->
+    <link name="ceiling_link"/>
+
+    <!-- 카메라 링크 정의 -->
+    <link name="camera1_link">
+        <visual>
+            <material name="white"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.1" radius="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" />
+            <mass value="0.005" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+        </inertial>
+    </link>
+
+    <!-- 천장과 카메라를 연결하는 고정 조인트 정의 -->
+    <joint name="ceiling_to_camera" type="fixed">
+        <parent link="ceiling_link"/>
+        <child link="camera1_link"/>
+        <origin xyz="1 0 -0.05" rpy="0 1.57 0"/>
+    </joint>
+
+    <!-- Gazebo 플러그인을 사용하여 카메라 센서 추가 -->
+    <gazebo reference="camera1_link">
+        <gravity>false</gravity>
+        <self_collide>false</self_collide>
+        <sensor type="camera" name="camera1">
+            <camera>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>800</width>
+                    <height>600</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.1</near>
+                    <far>100</far>
+                </clip>
+            </camera>
+            <plugin name="camera1_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>30.0</updateRate>
+                <cameraName>camera1</cameraName>
+                <imageTopicName>camera1/image_raw</imageTopicName>
+                <cameraInfoTopicName>camera1/camera_info</cameraInfoTopicName>
+                <frameName>camera1_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+</robot>
