@@ -3,10 +3,7 @@ Panels:
     Help Height: 0
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Global Options1
-        - /Status1
-        - /TF1
+      Expanded: ~
       Splitter Ratio: 0.5
     Tree Height: 533
   - Class: rviz_common/Selection
@@ -26,7 +23,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: robot1_scan
 Visualization Manager:
   Class: ""
   Displays:
@@ -49,87 +46,19 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: true
     - Class: rviz_default_plugins/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        robot1_base_link:
-          Value: true
-        robot1_left_caster:
-          Value: true
-        robot1_left_wheel:
-          Value: true
-        robot1_odom:
-          Value: true
-        robot1_right_caster:
-          Value: true
-        robot1_right_wheel:
-          Value: true
-        robot2_base_link:
-          Value: true
-        robot2_left_caster:
-          Value: true
-        robot2_left_wheel:
-          Value: true
-        robot2_odom:
-          Value: true
-        robot2_right_caster:
-          Value: true
-        robot2_right_wheel:
-          Value: true
-        robot3_base_link:
-          Value: true
-        robot3_left_caster:
-          Value: true
-        robot3_left_wheel:
-          Value: true
-        robot3_odom:
-          Value: true
-        robot3_right_caster:
-          Value: true
-        robot3_right_wheel:
-          Value: true
-        world:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        world:
-          robot1_odom:
-            robot1_base_link:
-              robot1_left_caster:
-                {}
-              robot1_left_wheel:
-                {}
-              robot1_right_caster:
-                {}
-              robot1_right_wheel:
-                {}
-          robot2_odom:
-            robot2_base_link:
-              robot2_left_caster:
-                {}
-              robot2_left_wheel:
-                {}
-              robot2_right_caster:
-                {}
-              robot2_right_wheel:
-                {}
-          robot3_odom:
-            robot3_base_link:
-              robot3_left_caster:
-                {}
-              robot3_left_wheel:
-                {}
-              robot3_right_caster:
-                {}
-              robot3_right_wheel:
-                {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
@@ -159,6 +88,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         robot1_left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot1_lidar_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -214,6 +148,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        robot2_lidar_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         robot2_right_caster:
           Alpha: 1
           Show Axes: false
@@ -265,6 +204,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        robot3_lidar_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         robot3_right_caster:
           Alpha: 1
           Show Axes: false
@@ -283,6 +227,108 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: robot1_scan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.019999999552965164
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot1_laser_controller/out
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 0; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: robot2_scan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.019999999552965164
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot2_laser_controller/out
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 0; 255; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: robot3_scan
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.019999999552965164
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot3_laser_controller/out
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -329,25 +375,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.5022976398468018
+      Distance: 5.746772766113281
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.13850031793117523
-        Y: 0.2410787045955658
-        Z: 0.042082104831933975
+        X: -0.4856240749359131
+        Y: 1.0953459739685059
+        Z: -0.4374018907546997
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5697963237762451
+      Pitch: 0.5897972583770752
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.135401725769043
+      Yaw: 3.1653900146484375
     Saved: ~
 Window Geometry:
   Displays:
@@ -365,5 +411,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1387
-  X: 314
-  Y: 247
+  X: 174
+  Y: 97
