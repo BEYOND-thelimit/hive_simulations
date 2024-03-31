@@ -11,12 +11,16 @@
 
   <depend>rclcpp</depend>
   <depend>rclcpp_components</depend>
+  <depend>nav_msgs</depend>
   <depend>realsense2_camera_msgs</depend>
   <depend>gazebo_ros_pkgs</depend>
   <depend>xacro</depend>
   <depend>rviz2</depend>
   <depend>gazebo_ros</depend>
   <depend>gazebo</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
   <depend>robot_state_publisher</depend>
   <depend>joint_state_publisher</depend>
   <depend>joint_state_publisher_gui</depend>
