@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="robot3" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<xacro:property name="body_color" value="Gazebo/Green"/>
+<xacro:property name="body_color" value="Gazebo/Blue"/>
 
 <gazebo>
   <plugin name="control" filename="libgazebo_ros_control.so"/>
