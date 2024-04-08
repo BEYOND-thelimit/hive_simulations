@@ -132,6 +132,14 @@
   </collision>
 </link>
 
+<link name="robot1_imu_link"/>
+
+<joint name="robot1_imu_joint" type="fixed">
+  <origin xyz="-0.12 0 0.5" rpy="0 0 0"/>
+  <parent link="robot1_base_link"/>
+  <child link="robot1_imu_link"/>
+</joint>
+
 <joint name="robot1_left_wheel_joint" type="continuous">
   <origin xyz="-1e-06 0.2734 0.0" rpy="0 0 0"/>
   <parent link="robot1_base_link"/>
