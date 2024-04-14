@@ -1,99 +1,123 @@
 <?xml version="1.0" ?>
-<robot name="robot3" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<robot name="robot3"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:property name="body_color" value="Gazebo/Green"/>
+  <xacro:property name="body_color" value="Gazebo/Blue"/>
 
-<gazebo>
-  <plugin name="control" filename="libgazebo_ros_control.so"/>
-  <plugin name='robot3_diff_drive' filename='libgazebo_ros_diff_drive.so'>
-        <ros>
+  <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so"/>
+    <plugin name='robot3_diff_drive' filename='libgazebo_ros_diff_drive.so'>
+      <ros>
         <!--cmd_vel and odom name remap-->
-          <remapping>cmd_vel:=/robot3/cmd_vel</remapping>
-          <remapping>odom:=/robot3/odom</remapping>
+        <remapping>cmd_vel:=/robot3/cmd_vel</remapping>
+        <remapping>odom:=/robot3/odom</remapping>
+      </ros>
+
+      <!-- Wheel Information -->
+      <left_joint>robot3_left_wheel_joint</left_joint>
+      <right_joint>robot3_right_wheel_joint</right_joint>
+      <wheel_separation>0.5336</wheel_separation>
+      <wheel_diameter>0.115</wheel_diameter>
+
+      <!-- Limits -->
+      <max_wheel_torque>200</max_wheel_torque>
+      <max_wheel_acceleration>10.0</max_wheel_acceleration>
+
+      <!-- Output -->
+      <odometry_frame>robot3_odom</odometry_frame>
+      <robot_base_frame>robot3_base_link</robot_base_frame>
+
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="robot3_lidar_link">
+    <sensor name="laser" type="ray">
+      <pose> 0 0 0 0 0 0 </pose>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <min_angle>-3.141592</min_angle>
+            <max_angle>3.141592</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>12</max>
+        </range>
+      </ray>
+      <plugin name="robot3_laser_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=/robot3/scan</remapping>
         </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>robot3_lidar_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
 
-        <!-- Wheel Information -->
-        <left_joint>robot3_left_wheel_joint</left_joint>
-        <right_joint>robot3_right_wheel_joint</right_joint>
-        <wheel_separation>0.5336</wheel_separation>
-        <wheel_diameter>0.115</wheel_diameter>
+  <gazebo reference="robot3_imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin name="robot3_imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <remapping>~/out:=/robot3/imu</remapping>
+        </ros>
+        <bodyName>robot3_imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>robot3_imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
 
-        <!-- Limits -->
-        <max_wheel_torque>200</max_wheel_torque>
-        <max_wheel_acceleration>10.0</max_wheel_acceleration>
-
-        <!-- Output -->
-        <odometry_frame>robot3_odom</odometry_frame>
-        <robot_base_frame>robot3_base_link</robot_base_frame>
-
-        <publish_odom>true</publish_odom>
-        <publish_odom_tf>true</publish_odom_tf>
-        <publish_wheel_tf>true</publish_wheel_tf>
-  </plugin>
-</gazebo>
-
-<gazebo reference="robot3_lidar_link">
-        <sensor name="laser" type="ray">
-            <pose> 0 0 0 0 0 0 </pose>
-            <always_on>true</always_on>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <ray>
-                <scan>
-                    <horizontal>
-                        <samples>360</samples>
-                        <min_angle>-3.141592</min_angle> 
-                        <max_angle>3.141592</max_angle>
-                    </horizontal>
-                </scan>
-                <range>
-                    <min>0.1</min>
-                    <max>12</max>
-                </range>
-            </ray>
-            <plugin name="robot3_laser_controller" filename="libgazebo_ros_ray_sensor.so">
-                <ros>
-                    <remapping>~/out:=/robot3/scan</remapping>
-                </ros>
-                <output_type>sensor_msgs/LaserScan</output_type>
-                <frame_name>robot3_lidar_link</frame_name>
-            </plugin>
-        </sensor>
-</gazebo>
-
-<gazebo reference="robot3_base_link">
-  <material>${body_color}</material>
-  <!-- <mu1>0.2</mu1>
+  <gazebo reference="robot3_base_link">
+    <material>${body_color}</material>
+    <!-- <mu1>0.2</mu1>
   <mu2>0.2</mu2> -->
-  <self_collide>true</self_collide>
-  <gravity>true</gravity>
-</gazebo>
+    <self_collide>true</self_collide>
+    <gravity>true</gravity>
+  </gazebo>
 
-<gazebo reference="robot3_left_wheel">
-  <material>${body_color}</material>
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
+  <gazebo reference="robot3_left_wheel">
+    <material>${body_color}</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
 
-<gazebo reference="robot3_right_wheel">
-  <material>${body_color}</material>
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
+  <gazebo reference="robot3_right_wheel">
+    <material>${body_color}</material>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
 
-<gazebo reference="robot3_right_caster">
-  <material>${body_color}</material>
-  <mu1>0.05</mu1>
-  <mu2>0.05</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
+  <gazebo reference="robot3_right_caster">
+    <material>${body_color}</material>
+    <mu1>0.05</mu1>
+    <mu2>0.05</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
 
-<gazebo reference="robot3_left_caster">
-  <material>${body_color}</material>
-  <mu1>0.05</mu1>
-  <mu2>0.05</mu2>
-  <self_collide>true</self_collide>
-</gazebo>
+  <gazebo reference="robot3_left_caster">
+    <material>${body_color}</material>
+    <mu1>0.05</mu1>
+    <mu2>0.05</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
 </robot>

@@ -9,7 +9,27 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(gazebo_ros REQUIRED)
 find_package(gazebo_ros_pkgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
+add_executable(odom_noise_maker_node src/odom_covariance_publisher.cpp)
+ament_target_dependencies(odom_noise_maker_node
+  rclcpp
+  nav_msgs
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+)
+
+# node
+install(TARGETS odom_noise_maker_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Folder
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
