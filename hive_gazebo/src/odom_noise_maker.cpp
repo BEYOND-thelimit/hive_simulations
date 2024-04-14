@@ -43,9 +43,9 @@ OdomNoiseMaker::OdomNoiseMaker(/* args */) : Node("odom_noise_maker")
 
   publisher1_ = this->create_publisher<nav_msgs::msg::Odometry>("robot1/odom_noise", 10);
 
-  sigma_x_ = 0.0;
-  sigma_y_ = 0.0;
-  sigma_yaw_ = 0.0;
+  sigma_x_ = 0.01;
+  sigma_y_ = 0.01;
+  sigma_yaw_ = 0.01;
 }
 
 OdomNoiseMaker::~OdomNoiseMaker()
