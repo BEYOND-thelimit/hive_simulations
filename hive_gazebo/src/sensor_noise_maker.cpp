@@ -4,24 +4,27 @@
 #include "rclcpp/rclcpp.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "sensor_msgs/msg/imu.hpp"
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 
-class OdomNoiseMaker : public rclcpp::Node
+class SensorNoiseMaker : public rclcpp::Node
 {
  public:
-  OdomNoiseMaker(/* args */);
-  ~OdomNoiseMaker();
+  SensorNoiseMaker(/* args */);
+  ~SensorNoiseMaker();
   void sub_callback(const nav_msgs::msg::Odometry::SharedPtr msg);
   void velCallback(const geometry_msgs::msg::Twist::SharedPtr msg);
+  void imuCallback(const sensor_msgs::msg::Imu::SharedPtr imu_msg);
 
  private:
   /* data */
   rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subscription_;
+  rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub_;
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr vel_sub_;
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr publisher1_;
-  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr publisher2_;
+  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr publisher2_;
 
   double sigma_x_;
   double sigma_y_;
@@ -34,25 +37,28 @@ class OdomNoiseMaker : public rclcpp::Node
   bool moving_ = false;
 };
 
-OdomNoiseMaker::OdomNoiseMaker(/* args */) : Node("odom_noise_maker")
+SensorNoiseMaker::SensorNoiseMaker(/* args */) : Node("sensor_noise_maker")
 {
   subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
-            "robot1/odom", 10, std::bind(&OdomNoiseMaker::sub_callback, this, std::placeholders::_1));
+            "robot1/odom", 10, std::bind(&SensorNoiseMaker::sub_callback, this, std::placeholders::_1));
+  imu_sub_ = this->create_subscription<sensor_msgs::msg::Imu>(
+      "robot1/imu", 10, std::bind(&SensorNoiseMaker::imuCallback, this, std::placeholders::_1));
   vel_sub_ = this->create_subscription<geometry_msgs::msg::Twist>(
-      "robot1/cmd_vel", 10, std::bind(&OdomNoiseMaker::velCallback, this, std::placeholders::_1));
+      "robot1/cmd_vel", 10, std::bind(&SensorNoiseMaker::velCallback, this, std::placeholders::_1));
 
   publisher1_ = this->create_publisher<nav_msgs::msg::Odometry>("robot1/odom_noise", 10);
+  publisher2_ = this->create_publisher<sensor_msgs::msg::Imu>("robot1/imu_noise", 10);
 
-  sigma_x_ = 0.01;
-  sigma_y_ = 0.01;
-  sigma_yaw_ = 0.01;
+  sigma_x_ = 0.1;
+  sigma_y_ = 0.1;
+  sigma_yaw_ = 0.1;
 }
 
-OdomNoiseMaker::~OdomNoiseMaker()
+SensorNoiseMaker::~SensorNoiseMaker()
 {
 }
 
-void OdomNoiseMaker::velCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
+void SensorNoiseMaker::velCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
 {
   if (msg->linear.x != 0.0 || msg->angular.z != 0.0)
   {
@@ -64,7 +70,24 @@ void OdomNoiseMaker::velCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
   }
 }
 
-void OdomNoiseMaker::sub_callback(const nav_msgs::msg::Odometry::SharedPtr msg)
+void SensorNoiseMaker::imuCallback(const sensor_msgs::msg::Imu::SharedPtr imu_msg)
+{
+  imu_msg->orientation_covariance[0] = sigma_x_ * sigma_x_;
+  imu_msg->orientation_covariance[4] = sigma_y_ * sigma_y_;
+  imu_msg->orientation_covariance[8] = sigma_yaw_ * sigma_yaw_;
+
+  imu_msg->angular_velocity_covariance[0] = sigma_x_ * sigma_x_;
+  imu_msg->angular_velocity_covariance[4] = sigma_y_ * sigma_y_;
+  imu_msg->angular_velocity_covariance[8] = sigma_yaw_ * sigma_yaw_;
+
+  imu_msg->linear_acceleration_covariance[0] = sigma_x_ * sigma_x_;
+  imu_msg->linear_acceleration_covariance[4] = sigma_y_ * sigma_y_;
+  imu_msg->linear_acceleration_covariance[8] = sigma_yaw_ * sigma_yaw_;
+
+  publisher2_->publish(*imu_msg);
+}
+
+void SensorNoiseMaker::sub_callback(const nav_msgs::msg::Odometry::SharedPtr msg)
 {
   if (moving_)
   {
@@ -124,7 +147,7 @@ void OdomNoiseMaker::sub_callback(const nav_msgs::msg::Odometry::SharedPtr msg)
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<OdomNoiseMaker>();
+  auto node = std::make_shared<SensorNoiseMaker>();
   rclcpp::spin(node);
   rclcpp::shutdown();
   return 0;
