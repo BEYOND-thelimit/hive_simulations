@@ -9,7 +9,7 @@
     <joint name="world_ceiling_joint" type="fixed">
         <parent link="world"/>
         <child link="ceiling_link"/>
-        <origin xyz="0 0 3.505" rpy="0 0 0"/>
+        <origin xyz="0 0 2.5" rpy="0 0 0"/>
     </joint>
 
     <!-- ceiling link-->
@@ -50,11 +50,11 @@
             <visualize>true</visualize>
             <update_rate>60.0</update_rate>
             <camera name="RS_D435i">
-                <horizontal_fov>1.047198</horizontal_fov>
+                <horizontal_fov>1.51844</horizontal_fov>
                 <image>
                     <width>640</width>
                     <height>480</height>
-                    <format>R8G8B8</format>
+                    <format>B8G8R8</format>
                 </image>
                 <clip>
                     <near>0.05</near>
