@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     share_dir = get_package_share_directory('hive_gazebo')
-    world = os.path.join(share_dir, 'worlds', 'test_env.world')
+    world = os.path.join(share_dir, 'worlds', 'empty_world.world')
 
     return LaunchDescription([
         ExecuteProcess(
