@@ -53,6 +53,6 @@ def generate_launch_description():
         name='static_transform_publisher',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '0', '3.5', '0', '0', '0', 'world', 'ceiling_link']
+        arguments=['0', '0', '2.5', '0', '0', '0', 'world', 'ceiling_link']
     )
     return launch.LaunchDescription([rviz_node, camera_state_publisher,cam_pub1])
