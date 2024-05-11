@@ -78,7 +78,7 @@ def generate_launch_description():
         name='static_transform_publisher',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '0', '5', '0', '0', '0', 'world', 'ceiling_link']
+        arguments=['0', '0', '2.5', '0', '0', '0', 'world', 'ceiling_link']
     )
 
     camera1_urdf_spawn_node, camera1_state_publisher, \

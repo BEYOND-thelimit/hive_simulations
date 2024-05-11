@@ -16,6 +16,9 @@ find_package(nav_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(PCL REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(OpenCV REQUIRED)
 
 add_executable(sensor_noise_maker src/sensor_noise_maker.cpp)
 ament_target_dependencies(sensor_noise_maker
@@ -27,10 +30,27 @@ ament_target_dependencies(sensor_noise_maker
   tf2_geometry_msgs
 )
 
+add_executable(depth_sub src/depth_sub.cpp)
+ament_target_dependencies(depth_sub 
+  rclcpp 
+  std_msgs
+  nav_msgs
+  sensor_msgs 
+  PCL 
+  pcl_conversions 
+  OpenCV
+)
+
 # node
 install(TARGETS sensor_noise_maker
   DESTINATION lib/${PROJECT_NAME}
 )
+
+install(TARGETS
+	depth_sub
+	DESTINATION lib/${PROJECT_NAME}
+)
+
 
 # Folder
 install(DIRECTORY
