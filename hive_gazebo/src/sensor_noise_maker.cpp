@@ -49,8 +49,8 @@ SensorNoiseMaker::SensorNoiseMaker(/* args */) : Node("sensor_noise_maker")
   publisher1_ = this->create_publisher<nav_msgs::msg::Odometry>("robot1/odom_noise", 10);
   publisher2_ = this->create_publisher<sensor_msgs::msg::Imu>("robot1/imu_noise", 10);
 
-  sigma_x_ = 0.1;
-  sigma_y_ = 0.1;
+  sigma_x_ = 0.05;
+  sigma_y_ = 0.05;
   sigma_yaw_ = 0.1;
 }
 
@@ -91,10 +91,6 @@ void SensorNoiseMaker::sub_callback(const nav_msgs::msg::Odometry::SharedPtr msg
 {
   if (moving_)
   {
-    sigma_x_ += 0.0001;
-    sigma_y_ += 0.0001;
-    sigma_yaw_ += 0.0001;
-
     // Make Noise from Gaussian distribution
     std::random_device rd;
     std::mt19937 gen(rd());
